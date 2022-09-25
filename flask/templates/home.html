@@ -1,11 +1,17 @@
 
 {% extends "layout.html" %}{% block content %}
-  {% for num in nums %}
-   <div class="row">
-    {% for digit in num %}
-    <div class="col-2"><h1>{{digit}}</h1></div>
+  {% for num in range(3) %}
+   <div class="row justify-content-center">
+    {% for digit in range(5) %}
+    <div class="col-2"><h1 class="text-center">{{test.board[num][digit]}}</h1></div>
     {% endfor %}
    </div>
   {% endfor %} 
-  <button></button>
+  {% if test.checkBoard() >=1 %}
+    <div class="row justify-content-center">
+        <div class="col-4">
+        <h1 class="text-center">Winner!</h1>
+        </div>
+  {% endif %}
+  <a href="{{url_for('hello')}}">spin</a>
   {%endblock content %}

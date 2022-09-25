@@ -12,7 +12,7 @@ class Game():
         temp = []
         for _ in range(3):
             for _ in range(5):
-                temp.append(rand.randint(0,2))
+                temp.append(rand.randint(0,10))
             board.append(temp)
             temp = []
         return(np.array(board))
