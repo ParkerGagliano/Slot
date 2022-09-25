@@ -1,0 +1,11 @@
+
+{% extends "layout.html" %}{% block content %}
+  {% for num in nums %}
+   <div class="row">
+    {% for digit in num %}
+    <div class="col-2"><h1>{{digit}}</h1></div>
+    {% endfor %}
+   </div>
+  {% endfor %} 
+  <button></button>
+  {%endblock content %}

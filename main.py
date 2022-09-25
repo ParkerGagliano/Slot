@@ -10,6 +10,7 @@ def main():
             game = Game(money)
             while True:
                 wager = input('How much would you like to bet?')
+                print(game.board)
                 game.bet(wager)
                 print(game.money)
                 if game.money <= 0:
