@@ -1,7 +1,6 @@
 from re import L
 from flask import Flask
 from flask import Flask, render_template, url_for, flash, redirect
-from Test import Game
 import jyserver.Flask as jsf
 import numpy as np
 import random as rand
@@ -12,9 +11,10 @@ app = Flask(__name__)
 class App:
     def __init__(self):
         self.odds = 10
-        self.board = self.createBoard()
         self.money = 10000  # Set self variable count equal to 0
         self.wager = 10
+        self.canSpin = True
+        self.board = self.createBoard()
 
     def renderBoard(self):
         for i in range(3):
@@ -26,17 +26,18 @@ class App:
         self.js.document.getElementById(
             'balance').innerHTML = f'Current Balance: {self.money}'
         self.js.document.getElementById(
-            'currentbet').innerHTML = f'Current Bet: {self.wager}'
+            'currentbet').innerHTML = f'Current Bet: ${self.wager}'
 
     def createBoard(self):
-        board = []
-        temp = []
-        for _ in range(3):
-            for _ in range(5):
-                temp.append(rand.randint(0, self.odds))
-            board.append(temp)
+        if self.canSpin:
+            board = []
             temp = []
-        return board
+            for _ in range(3):
+                for _ in range(5):
+                    temp.append(rand.randint(0, self.odds))
+                board.append(temp)
+                temp = []
+            return board
 
     def spin(self):
         self.js.document.getElementById('win').innerHTML = ""
@@ -59,8 +60,12 @@ class App:
 
     def bet(self):
         if int(self.wager) > self.money:
-            print('You cant bet more then you have')
+            self.redBorder('balance', True)
+            self.canSpin = False
         else:
+            self.redBorder('balance', False)
+            self.canSpin = True
+
             self.money = self.money - int(self.wager)
             multi = int(self.checkBoard())
             if multi >= 1:
@@ -71,12 +76,19 @@ class App:
     def changeWager(self, ud):
         if ud == 1:
             self.wager += 10
+            self.redBorder('currentbet', False)
         else:
             if self.wager <= 10:
-                pass
+                self.redBorder('currentbet', True)
             else:
                 self.wager -= 10
         self.renderElse()
+
+    def redBorder(self, name, on):
+        if on:
+            self.js.document.getElementById(name).style.color = "red"
+        else:
+            self.js.document.getElementById(name).style.color = "black"
 
 
 @app.route('/')

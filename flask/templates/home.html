@@ -5,7 +5,7 @@
   {% endfor %}
 </div>
 {% endfor %}
-<div class="container">
+<div class="container pt-3">
   <div class="row">
     <div class="col">
       <div class="row">
@@ -13,33 +13,44 @@
           <div class="row">
             <h3 class="text-center" id="balance">Current Balance: 10000</h3>
           </div>
-          <div class="row"><h3 id="currentbet">Current Bet: $10</h3></div>
+          <div class="row">
+            <h3 class="text-center" id="currentbet">Current Bet: $10</h3>
+          </div>
         </div>
         <div class="col">
           <div class="row pb-1">
-            <button
-              onclick="server.changeWager(1)"
-              type="button"
-              class="btn btn-success"
-            >
-              +
-            </button>
+            <div class="col-sm-6 col-lg-10">
+              <div class="row">
+                <button
+                  onclick="server.changeWager(1)"
+                  type="button"
+                  class="btn btn-success"
+                >
+                  +
+                </button>
+              </div>
+            </div>
           </div>
+
           <div class="row">
-            <button
-              onclick="server.changeWager(0)"
-              type="button"
-              class="btn btn-danger"
-            >
-              -
-            </button>
+            <div class="col-sm-6 col-lg-10">
+              <div class="row">
+                <button
+                  onclick="server.changeWager(0)"
+                  type="button"
+                  class="btn btn-danger"
+                >
+                  -
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
-    <div class="col">
+    <div class="col-sm-3">
       <div class="row">
-        <div class="col-6 align-center">
+        <div class="col-6 col-sm-12">
           <div class="row">
             <button
               type="button"
