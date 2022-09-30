@@ -33,14 +33,17 @@ class Game():
         return matches
 
     def bet(self, bet):
-        self.money = self.money - int(bet)
-        multi = int(self.checkBoard())
-        if multi >= 1:
-            print("You won!")
-        final = int(bet) * (multi*2)
+        if int(bet) > self.money:
+            print('You cant bet more then you have')
+        else:
+            self.money = self.money - int(bet)
+            multi = int(self.checkBoard())
+            if multi >= 1:
+                print("You won!")
+            final = int(bet) * (multi*2)
 
-        self.money = self.money + final
-        self.spin()
+            self.money = self.money + final
+            self.spin()
 
         
 

@@ -3,15 +3,11 @@
   {% for num in range(3) %}
    <div class="row justify-content-center">
     {% for digit in range(5) %}
-    <div class="col-2"><h1 class="text-center">{{test.board[num][digit]}}</h1></div>
+    <div class="col-2"><h1 id={{num}}{{digit}} class="text-center"></h1></div>
     {% endfor %}
    </div>
   {% endfor %} 
-  {% if test.checkBoard() >=1 %}
-    <div class="row justify-content-center">
-        <div class="col-4">
-        <h1 class="text-center">Winner!</h1>
-        </div>
-  {% endif %}
-  <a href="{{url_for('hello')}}">spin</a>
+
+  <button onclick="server.spin()">SPINBOARD</button>
+  <h1 id="win"></h1>
   {%endblock content %}

@@ -2,6 +2,8 @@
 from Game import Game
 
 def main():
+    joe = Game(100)
+
     isPlaying = False
     while isPlaying == False:
         money = int(input('Welcome, how much money would you like to start with?'))
@@ -12,7 +14,7 @@ def main():
                 wager = input('How much would you like to bet?')
                 print(game.board)
                 game.bet(wager)
-                print(game.money)
+                print(f'Balance: ${game.money}')
                 if game.money <= 0:
                     print('You lost all your money!')
                     break
