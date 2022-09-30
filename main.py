@@ -1,12 +1,12 @@
 
 from Game import Game
 
-def main():
-    joe = Game(100)
 
+def main():
     isPlaying = False
     while isPlaying == False:
-        money = int(input('Welcome, how much money would you like to start with?'))
+        money = int(
+            input('Welcome, how much money would you like to start with?'))
         if isinstance(money, int) and money > 0:
             isPlaying = True
             game = Game(money)
@@ -21,6 +21,7 @@ def main():
         else:
             print('Please enter a valid amoun0t of money')
 
+
 def odds():
     tracker = {}
     for i in range(100000):
@@ -31,7 +32,7 @@ def odds():
             tracker[matches] += 1
         else:
             tracker[matches] = 1
-        
+
     for i in tracker:
         print(i, tracker[i])
 

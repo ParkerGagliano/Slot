@@ -1,18 +1,57 @@
-{% extends "layout.html" %}{% block content %}
-<h1 class="text-center" id="balance"></h1>
-{% for num in range(3) %}
+{% extends "layout.html" %}{% block content %} {% for num in range(3) %}
 <div class="row justify-content-center">
   {% for digit in range(5) %}
   <div class="col-2"><h1 id="{{num}}{{digit}}" class="text-center">0</h1></div>
   {% endfor %}
 </div>
 {% endfor %}
-<select name="bet" id="bet">
-  <option value="1">1</option>
-  <option value="5" selected>5</option>
-  <option value="20">20</option>
-  <option value="50">50</option>
-</select>
-<button onclick="server.spin()">SPINBOARD</button>
-<h1 id="win"></h1>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <div class="row">
+        <div class="col">
+          <div class="row">
+            <h3 class="text-center" id="balance">Current Balance: 10000</h3>
+          </div>
+          <div class="row"><h3 id="currentbet">Current Bet: $10</h3></div>
+        </div>
+        <div class="col">
+          <div class="row pb-1">
+            <button
+              onclick="server.changeWager(1)"
+              type="button"
+              class="btn btn-success"
+            >
+              +
+            </button>
+          </div>
+          <div class="row">
+            <button
+              onclick="server.changeWager(0)"
+              type="button"
+              class="btn btn-danger"
+            >
+              -
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="row">
+        <div class="col-6 align-center">
+          <div class="row">
+            <button
+              type="button"
+              class="btn btn-primary"
+              onclick="server.spin()"
+            >
+              SPIN
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 {%endblock content %}
