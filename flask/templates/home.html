@@ -1,13 +1,18 @@
-
 {% extends "layout.html" %}{% block content %}
-  {% for num in range(3) %}
-   <div class="row justify-content-center">
-    {% for digit in range(5) %}
-    <div class="col-2"><h1 id={{num}}{{digit}} class="text-center"></h1></div>
-    {% endfor %}
-   </div>
-  {% endfor %} 
-
-  <button onclick="server.spin()">SPINBOARD</button>
-  <h1 id="win"></h1>
-  {%endblock content %}
+<h1 class="text-center" id="balance"></h1>
+{% for num in range(3) %}
+<div class="row justify-content-center">
+  {% for digit in range(5) %}
+  <div class="col-2"><h1 id="{{num}}{{digit}}" class="text-center">0</h1></div>
+  {% endfor %}
+</div>
+{% endfor %}
+<select name="bet" id="bet">
+  <option value="1">1</option>
+  <option value="5" selected>5</option>
+  <option value="20">20</option>
+  <option value="50">50</option>
+</select>
+<button onclick="server.spin()">SPINBOARD</button>
+<h1 id="win"></h1>
+{%endblock content %}
