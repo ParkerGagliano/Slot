@@ -11,23 +11,29 @@
       <div class="row">
         <div class="col">
           <div class="row">
-            <h3 class="text-center" id="balance">Current Balance: 10000</h3>
+            <div class="col">
+              <h3 class="text-center" id="balance">Current Balance: $10000</h3>
+            </div>
           </div>
           <div class="row">
-            <h3 class="text-center" id="currentbet">Current Bet: $10</h3>
+            <div class="col">
+              <h3 class="text-center" id="currentbet">Current Bet: $10</h3>
+            </div>
           </div>
         </div>
         <div class="col">
           <div class="row pb-1">
             <div class="col-sm-6 col-lg-10">
               <div class="row">
-                <button
-                  onclick="server.changeWager(1)"
-                  type="button"
-                  class="btn btn-success"
-                >
-                  +
-                </button>
+                <div class="col">
+                  <button
+                    onclick="server.changeWager(1)"
+                    type="button"
+                    class="btn btn-success btn-block"
+                  >
+                    +
+                  </button>
+                </div>
               </div>
             </div>
           </div>
@@ -35,13 +41,15 @@
           <div class="row">
             <div class="col-sm-6 col-lg-10">
               <div class="row">
-                <button
-                  onclick="server.changeWager(0)"
-                  type="button"
-                  class="btn btn-danger"
-                >
-                  -
-                </button>
+                <div class="col">
+                  <button
+                    onclick="server.changeWager(0)"
+                    type="button"
+                    class="btn btn-danger btn-block"
+                  >
+                    -
+                  </button>
+                </div>
               </div>
             </div>
           </div>
@@ -54,11 +62,56 @@
           <div class="row">
             <button
               type="button"
-              class="btn btn-primary"
+              class="btn btn-primary btn-block"
               onclick="server.spin()"
             >
               SPIN
             </button>
+          </div>
+          <div class="row mt-1">
+            <div class="col text-center pl-0">
+              <div class="btn-group">
+                <button
+                  type="button"
+                  class="btn btn-danger dropdown-toggle"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
+                  Change Volatility
+                </button>
+                <div class="dropdown-menu">
+                  <button
+                    class="dropdown-item"
+                    id="2"
+                    onclick="server.changeVolatility(3)"
+                  >
+                    0-3
+                  </button>
+                  <button
+                    class="dropdown-item"
+                    id="5"
+                    onclick="server.changeVolatility(5)"
+                  >
+                    0-5
+                  </button>
+                  <button
+                    class="dropdown-item"
+                    id="1"
+                    onclick="server.changeVolatility(10)"
+                  >
+                    0-10
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="row">
+                <div class="col">
+                  <h3 id="volatility">10</h3>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

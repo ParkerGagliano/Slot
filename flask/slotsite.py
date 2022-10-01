@@ -11,9 +11,10 @@ app = Flask(__name__)
 class App:
     def __init__(self):
         self.odds = 10
-        self.money = 10000  # Set self variable count equal to 0
+        self.money = 10000
         self.wager = 10
         self.canSpin = True
+        self.lastWin = 0
         self.board = self.createBoard()
 
     def renderBoard(self):
@@ -24,9 +25,11 @@ class App:
 
     def renderElse(self):
         self.js.document.getElementById(
-            'balance').innerHTML = f'Current Balance: {self.money}'
+            'balance').innerHTML = f'Current Balance: ${self.money}'
         self.js.document.getElementById(
             'currentbet').innerHTML = f'Current Bet: ${self.wager}'
+        self.js.document.getElementById(
+            'volatility').innerHTML = self.odds
 
     def createBoard(self):
         if self.canSpin:
@@ -68,9 +71,20 @@ class App:
 
             self.money = self.money - int(self.wager)
             multi = int(self.checkBoard())
-            if multi >= 1:
-                self.js.document.getElementById('win').innerHTML = "You won!"
+            if self.odds == 3:
+                multi = multi * 2
+            if self.odds == 5:
+                multi = multi * 5
+            if self.odds == 10:
+                multi = multi * 9
             final = int(self.wager) * (multi*2)
+            self.lastWin = final
+            if multi >= 1:
+                self.js.document.getElementById(
+                    'win').innerHTML = f'You won ${self.lastWin}!'
+            else:
+                self.js.document.getElementById(
+                    'win').innerHTML = ""
             self.money = self.money + final
 
     def changeWager(self, ud):
@@ -90,8 +104,12 @@ class App:
         else:
             self.js.document.getElementById(name).style.color = "black"
 
+    def changeVolatility(self, value):
+        self.odds = value
+        self.renderElse()
 
-@app.route('/')
+
+@ app.route('/')
 def hello():
     return App.render(render_template('home.html'))
 
