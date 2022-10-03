@@ -6,3 +6,4 @@ pip install Flask
 pip install jyserver
 
 Run slotsite.py and it will start a localhost server
+<img width="1165" alt="Screenshot 2022-10-02 at 8 00 58 PM" src="https://user-images.githubusercontent.com/20826285/193482189-5d3be355-5bac-41d3-a4da-ecfac12d6492.png">
